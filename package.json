@@ -1,0 +1,35 @@
+{
+  "name": "iamporter",
+  "version": "0.7.20",
+  "description": "Node.js client for I'mport REST API",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "request": "^2.73.0",
+    "request-promise": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/posquit0/node-iamporter.git"
+  },
+  "keywords": [
+    "iamport",
+    "i'mport",
+    "rest",
+    "api",
+    "client",
+    "payment",
+    "nodejs"
+  ],
+  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/posquit0/node-iamporter/issues"
+  },
+  "homepage": "https://github.com/posquit0/node-iamporter#readme"
+}
