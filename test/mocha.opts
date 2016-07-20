@@ -1,0 +1,4 @@
+--recursive
+--full-trace
+--timeout 5000
+--ui bdd
