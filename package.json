@@ -1,6 +1,6 @@
 {
   "name": "iamporter",
-  "version": "0.7.21",
+  "version": "0.7.22",
   "description": "Node.js client for I'mport REST API",
   "main": "index.js",
   "dependencies": {
