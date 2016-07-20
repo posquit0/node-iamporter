@@ -1,7 +1,8 @@
-<img src="https://avatars3.githubusercontent.com/u/11437969?v=3&s=200" align="left" width="144px" height="144px"/>
+<img src="https://avatars3.githubusercontent.com/u/11437969?v=3&s=200" align="left" width="128px" height="128px"/>
 
 ### **Iamporter**
 > *A REST API client for I'mport*
+
 [![npm version](https://badge.fury.io/js/iamporter.svg)](https://badge.fury.io/js/iamporter)
 
 
