@@ -26,7 +26,35 @@ var iamporter = require('iamporter').createClient({
   secret: 'YOUR_SECRET'
 });
 
+iamporter.createSubscriber({
+  'card_number': '1234-1234-1234-1234',
+  'expiry': '2021-11',
+  'birth': '620201',
+  'pwd_2digit': '99'
+}).then(function (result) {
+  console.log(result);
+}).catch(function (error) {
+  console.log(error);
+});
 ```
+
+
+## <a name="todo">To-do
+- [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
+- [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
+- [x] [GET   /payments/find/:merchant_uid](https://api.iamport.kr/#!/payments/getPaymentByMerchantUid)
+- [ ] [GET   /payments/status/:payment_status](https://api.iamport.kr/#!/payments/getPaymentsByStatus)
+- [x] [POST  /payments/cancel](https://api.iamport.kr/#!/payments/cancelPayment)
+- [ ] [POST  /payments/prepare](https://api.iamport.kr/#!/payments.validation/preparePayment)
+- [ ] [GET   /payments/prepare/:merchant_uid](https://api.iamport.kr/#!/payments.validation/getPaymentPrepareByMerchantUid)
+- [x] [POST  /subscribe/payments/onetime](https://api.iamport.kr/#!/subscribe/onetime)
+- [x] [POST  /subscribe/payments/foreign](https://api.iamport.kr/#!/)
+- [x] [POST  /subscribe/payments/again](https://api.iamport.kr/#!/subscribe/again)
+- [ ] [POST   /subscribe/payments/schedule](https://api.iamport.kr/#!/subscribe/schedule)
+- [ ] [POST   /subscribe/payments/unschedule](https://api.iamport.kr/#!/subscribe/unschedule)
+- [x] [DELETE /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_delete)
+- [x] [GET    /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_view)
+- [x] [POST   /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_save)
 
 
 ## <a name="credit">Credit
