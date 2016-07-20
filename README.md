@@ -1,4 +1,4 @@
-<img src="https://avatars3.githubusercontent.com/u/11437969?v=3&s=200" align="left" width="122px" height="122px"/>
+<img src="https://avatars3.githubusercontent.com/u/11437969?v=3&s=200" align="left" width="128px" height="128px"/>
 
 ### **Iamporter**
 > *A REST API client for I'mport*
