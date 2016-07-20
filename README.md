@@ -133,7 +133,7 @@ iamporter.findByImpUid(
 ```
 
 
-# <a name="todo">To-do
+## To-do
 
 - [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
 - [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
