@@ -8,7 +8,7 @@
 
 <br />
 
-[**Iamporter**](https://github.com/iamport/iamport-rest-client-nodejs)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
+[**Iamporter**](https://github.com/posquit0/node-iamporter)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
 
 ## <a name="installation">Installation
 
