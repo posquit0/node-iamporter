@@ -10,6 +10,9 @@
 
 [**Iamporter**](https://github.com/posquit0/node-iamporter)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
 
+- 이용 중 발생한 문제에 대하여 책임지지 않습니다.
+- 최초 작성은 자동차 렌트 플랫폼 [CARPLAT](https://www.carplat.co.kr)에서 사용하기 위하여 작성되었습니다.
+
 ## <a name="installation">Installation
 
 ```bash
