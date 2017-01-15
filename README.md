@@ -3,6 +3,7 @@
 ### **Iamporter**
 > *A REST API client for I'mport*
 
+[![CircleCI](https://circleci.com/gh/posquit0/node-iamporter.svg?style=svg)](https://circleci.com/gh/posquit0/node-iamporter)
 [![npm version](https://badge.fury.io/js/iamporter.svg)](https://badge.fury.io/js/iamporter)
 [![npm](https://img.shields.io/npm/dt/iamporter.svg)](https://www.npmjs.com/package/iamporter)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
