@@ -1,16 +1,23 @@
 {
   "name": "iamporter",
   "version": "0.8.14",
-  "description": "Node.js client for I'mport REST API",
+  "description": "Node.js REST API client for I'mport",
   "main": "index.js",
   "dependencies": {
     "lodash": "^4.13.1",
     "request": "^2.73.0",
     "request-promise": "^4.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha test",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test",
+    "lint": "./node_modules/.bin/eslint lib"
   },
   "repository": {
     "type": "git",
@@ -19,10 +26,15 @@
   "keywords": [
     "iamport",
     "i'mport",
+    "importer",
     "rest",
     "api",
     "client",
+    "creditcard",
+    "pay",
     "payment",
+    "payments",
+    "pg",
     "nodejs"
   ],
   "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
