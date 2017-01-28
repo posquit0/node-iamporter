@@ -20,6 +20,9 @@
   <a href="https://www.npmjs.com/package/iamporter">
     <img alt="npm" src="https://img.shields.io/npm/dt/iamporter.svg" />
   </a>
+  <a href="https://david-dm.org/posquit0/node-iamporter">
+    <img alt="npm" src="https://img.shields.io/david/posquit0/node-iamporter.svg?style=flat-square" />
+  </a>
   <a href="https://opensource.org/licenses/mit-license.php">
     <img alt="MIT Licence" src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" />
   </a>
@@ -28,7 +31,6 @@
   </a>
 </div>
 
-[![NPM](https://nodei.co/npm/iamporter.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/iamporter/)
 <br />
 
 [**Iamporter**](https://github.com/posquit0/node-iamporter)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
