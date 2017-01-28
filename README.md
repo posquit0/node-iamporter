@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/posquit0/node-iamporter" title="Iamporter.js">
-    <img alt="Iamporter.js" src="https://github.com/posquit0/node-iamporter/raw/master/icon.png" width="200px" height="200px" />
+    <img alt="Iamporter.js" src="https://avatars3.githubusercontent.com/u/11437969" width="200px" height="200px" />
   </a>
   <br />
   Iamporter
