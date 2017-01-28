@@ -1,13 +1,32 @@
-<img src="https://avatars3.githubusercontent.com/u/11437969?v=3&s=200" align="left" width="128px" height="128px"/>
+<h1 align="center">
+  <a href="https://github.com/posquit0/node-iamporter" title="Iamporter.js">
+    <img alt="Iamporter.js" src="https://github.com/posquit0/node-iamporter/raw/master/icon.png" width="200px" height="200px" />
+  </a>
+  <br />
+  Iamporter
+</h1>
 
-### **Iamporter**
-> *A REST API client for I'mport*
+<p align="center">
+  A REST API client for I'mport
+</p>
 
-[![CircleCI](https://circleci.com/gh/posquit0/node-iamporter.svg?style=svg)](https://circleci.com/gh/posquit0/node-iamporter)
-[![npm version](https://badge.fury.io/js/iamporter.svg)](https://badge.fury.io/js/iamporter)
-[![npm](https://img.shields.io/npm/dt/iamporter.svg)](https://www.npmjs.com/package/iamporter)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
+<div align="center">
+  <a href="https://circleci.com/gh/posquit0/node-iamporter">
+    <img alt="CircleCI" src="https://circleci.com/gh/posquit0/node-iamporter.svg?style=shield" />
+  </a>
+  <a href="https://badge.fury.io/js/iamporter">
+    <img alt="npm version" src="https://badge.fury.io/js/iamporter.svg" />
+  </a>
+  <a href="https://www.npmjs.com/package/iamporter">
+    <img alt="npm" src="https://img.shields.io/npm/dt/iamporter.svg" />
+  </a>
+  <a href="https://opensource.org/licenses/mit-license.php">
+    <img alt="MIT Licence" src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" />
+  </a>
+  <a href="https://github.com/ellerbrock/open-source-badge/">
+    <img alt="Open Source Love" src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" />
+  </a>
+</div>
 
 [![NPM](https://nodei.co/npm/iamporter.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/iamporter/)
 <br />
