@@ -36,8 +36,9 @@
 
 <br />
 
-**Iamporter**는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 쉽게 활용하기 위하여 작성된 Node.js 클라이언트 입니다. 아임포트는 국내 PG사와의간편한 연동을 제공하는 서비스입니다.
+**Iamporter**는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 쉽게 활용하기 위하여 작성된 Node.js 클라이언트 입니다.
 
+- 아임포트는 국내 PG사와의간편한 연동을 제공하는 서비스입니다.
 - 이용 중 발생한 문제에 대하여 책임지지 않습니다.
 - 최초 작성은 자동차 렌트 플랫폼 [CARPLAT](https://www.carplat.co.kr)에서 사용하기 위하여 작성되었습니다.
 
