@@ -58,7 +58,9 @@ $ npm install iamporter
 
 ## <a name="usage">Usage
 
-### Create an Instance
+### Import & Create an Instance
+
+- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공한다.
 
 ```node
 const { Iamporter, IamporterError } = require('iamporter');
@@ -172,24 +174,42 @@ iamporter.cancel({
 }).catch(function (error) {
   console.log(error);
 });
+```
 
-// 결제정보 조회 (MerchantUid 이용)
-iamporter.findByMerchantUid(
-  'test_billing_key'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+### Find a Payment Information
 
-// 결제정보 조회 (ImpUid 이용)
-iamporter.findByImpUid(
-  'test_imp_uid'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+- 아임포트에서는 아임포트 고유 아이디(ImpUid)와 상점 고유 아이디(MerchantUid)로 결제정보 조회가 가능하다.
+
+```node
+// 아임포트 고유 아이디로 결제정보 조회
+iamporter.findByImpUid('imp_448280090638')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    if (err instanceof IamporterError)
+      // Handle the exception
+  });
+  
+// 상점 고유 아이디로 결제정보 조회
+iamporter.findByMerchantUid('merchant_1448280088556')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    if (err instanceof IamporterError)
+      // Handle the exception
+  });
+
+// 상점 고유 아이디로 결제정보 목록 조회
+iamporter.findAllByMerchantUid('merchant_1448280088556')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    if (err instanceof IamporterError)
+      // Handle the exception
+  });
 ```
 
 
@@ -198,7 +218,7 @@ iamporter.findByImpUid(
 - [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
 - [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
 - [x] [GET   /payments/find/:merchant_uid](https://api.iamport.kr/#!/payments/getPaymentByMerchantUid)
-- [ ] [GET   /payments/status/:payment_status](https://api.iamport.kr/#!/payments/getPaymentsByStatus)
+- [x] [GET   /payments/status/:payment_status](https://api.iamport.kr/#!/payments/getPaymentsByStatus)
 - [x] [POST  /payments/cancel](https://api.iamport.kr/#!/payments/cancelPayment)
 - [x] [POST  /payments/prepare](https://api.iamport.kr/#!/payments.validation/preparePayment)
 - [x] [GET   /payments/prepare/:merchant_uid](https://api.iamport.kr/#!/payments.validation/getPaymentPrepareByMerchantUid)
