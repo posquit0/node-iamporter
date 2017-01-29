@@ -10,7 +10,6 @@ machine:
   environment:
     YARN_VERSION: 0.19.1
     PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${HOME}/.yarn/bin:${PATH}"
-    DEBUG: iamporter
 
 ## Customize dependencies
 dependencies:
