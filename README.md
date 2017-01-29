@@ -58,41 +58,74 @@ $ npm install iamporter
 
 ## <a name="usage">Usage
 
+### Create an Instance
+
 ```node
-var iamporter = require('iamporter').createClient({
+const { Iamporter, IamporterError } = require('iamporter');
+
+// For Testing (테스트용 API KEY와 SECRET 기본 설정)
+const iamporter = new Iamporter();
+
+// For Production
+const iamporter = new Iamporter({
   apiKey: 'YOUR_API_KEY',
   secret: 'YOUR_SECRET'
 });
+```
 
-// 비인증 결제를 위한 빌링키 생성
-iamporter.createSubscriber({
+### Subscription
+
+- 정기 구독(Subscription)형 서비스 등에 이용할 수 있는 빌링키를 관리한다.
+
+```node
+// 빌링키 생성
+iamporter.createSubscription({
   'customer_uid': 'test_uid',
   'card_number': '1234-1234-1234-1234',
   'expiry': '2021-11',
   'birth': '620201',
   'pwd_2digit': '99'
-}).then(function (result) {
+}).then(result => {
   console.log(result);
-}).catch(function (error) {
-  console.log(error);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
 });
 
-// 비인증 결제를 위한 빌링키 조회
-iamporter.getSubscriber('test_uid')
-.then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 빌링키 조회
+iamporter.getSubscription('test_uid')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    if (err instanceof IamporterError)
+      // Handle the exception
+  });
 
-// 비인증 결제를 위한 빌링키 삭제
-iamporter.deleteSubscriber('test_uid')
-.then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 빌링키 삭제
+iamporter.deleteSubscription('test_uid')
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    if (err instanceof IamporterError)
+      // Handle the exception
+  });
 
+// 비인증 결제 (빌링키 이용)
+iamporter.paySubscription({
+  'customer_uid': 'test_uid',
+  'merchant_uid': 'test_billing_key',
+  'amount': 50000
+}).then(result => {
+    console.log(result);
+  }).catch(err => {
+    if (err instanceof IamporterError)
+    // Handle the exception
+  });
+```
+
+```node
 // Onetime 비인증 결제
 iamporter.payOnetime({
   'merchant_uid': 'test_merchant',
@@ -107,16 +140,6 @@ iamporter.payOnetime({
   console.log(error);
 });
 
-// 비인증 결제 (빌링키 이용)
-iamporter.paySubscriber({
-  'customer_uid': 'test_uid',
-  'merchant_uid': 'test_billing_key',
-  'amount': 50000
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
 
 // 결제 취소 (MerchantUid 이용)
 iamporter.cancelByMerchantUid(
