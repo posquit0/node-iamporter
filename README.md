@@ -183,9 +183,12 @@ iamporter.findByImpUid(
 - [x] [POST   /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_save)
 
 
-## <a name="credit">Credit
+## <a name="links">Links
 
-[**iamport-node-rest-client-nodejs**](https://github.com/iamport/iamport-rest-client-nodejs)의 코드를 참고하여 다시 작성하였습니다.
+- [**아임포트**](http://www.iamport.kr/)
+- [**아임포트 API**](https://api.iamport.kr/)
+- [**아임포트 관리자**](https://admin.iamport.kr/)
+- [**아임포트 매뉴얼**](http://www.iamport.kr/manual/)
 
 
 ## <a name="contact">Contact
@@ -196,4 +199,4 @@ If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc
 ## <a name="license">License
 
 - Claud D. Park <posquit0.bj@gmail.com>
-- [MIT Liense](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
+- [MIT License](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
