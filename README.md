@@ -232,25 +232,6 @@ iamporter.findAllByMerchantUid('merchant_1448280088556')
 ```
 
 
-## To-do
-
-- [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
-- [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
-- [x] [GET   /payments/find/:merchant_uid](https://api.iamport.kr/#!/payments/getPaymentByMerchantUid)
-- [x] [GET   /payments/status/:payment_status](https://api.iamport.kr/#!/payments/getPaymentsByStatus)
-- [x] [POST  /payments/cancel](https://api.iamport.kr/#!/payments/cancelPayment)
-- [x] [POST  /payments/prepare](https://api.iamport.kr/#!/payments.validation/preparePayment)
-- [x] [GET   /payments/prepare/:merchant_uid](https://api.iamport.kr/#!/payments.validation/getPaymentPrepareByMerchantUid)
-- [x] [POST  /subscribe/payments/onetime](https://api.iamport.kr/#!/subscribe/onetime)
-- [x] [POST  /subscribe/payments/foreign](https://api.iamport.kr/#!/)
-- [x] [POST  /subscribe/payments/again](https://api.iamport.kr/#!/subscribe/again)
-- [ ] [POST   /subscribe/payments/schedule](https://api.iamport.kr/#!/subscribe/schedule)
-- [ ] [POST   /subscribe/payments/unschedule](https://api.iamport.kr/#!/subscribe/unschedule)
-- [x] [DELETE /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_delete)
-- [x] [GET    /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_view)
-- [x] [POST   /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_save)
-
-
 ## <a name="links">Links
 
 - [**아임포트**](http://www.iamport.kr/)
