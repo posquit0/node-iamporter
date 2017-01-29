@@ -75,6 +75,20 @@ const iamporter = new Iamporter({
 });
 ```
 
+### API Token
+
+- `iamporter`는 API 요청 전에 API 토큰의 유효성을 확인 후 자동 발급/갱신하므로 직접 토큰 API를 호출할 필요가 없다.
+
+```node
+// 인스턴스 생성 시 설정한 API KEY와 SECRET 
+iamporter.getToken()
+  .then(...)
+
+// 토큰 생성 시 사용될 API KEY와 SECRET 직접 지정
+iamporter.getToken('API_KEY', 'SECRET')
+  .then(...)
+```
+
 ### Subscription
 
 - 정기 구독(Subscription)형 서비스 등에 이용할 수 있는 빌링키를 관리한다.
@@ -127,6 +141,8 @@ iamporter.paySubscription({
   });
 ```
 
+### Onetime Payment
+
 ```node
 // Onetime 비인증 결제
 iamporter.payOnetime({
@@ -141,8 +157,11 @@ iamporter.payOnetime({
 }).catch(function (error) {
   console.log(error);
 });
+```
 
+### Cancel the Payment
 
+```node
 // 결제 취소 (MerchantUid 이용)
 iamporter.cancelByMerchantUid(
   'test_billing_key'
@@ -176,7 +195,7 @@ iamporter.cancel({
 });
 ```
 
-### Find a Payment Information
+### Find the Payments
 
 - 아임포트에서는 아임포트 고유 아이디(ImpUid)와 상점 고유 아이디(MerchantUid)로 결제정보 조회가 가능하다.
 
