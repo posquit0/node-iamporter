@@ -215,6 +215,7 @@ iamporter.findAllByMerchantUid('merchant_1448280088556')
 
 ## To-do
 
+
 - [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
 - [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
 - [x] [GET   /payments/find/:merchant_uid](https://api.iamport.kr/#!/payments/getPaymentByMerchantUid)
