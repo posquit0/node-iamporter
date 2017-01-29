@@ -4,9 +4,9 @@
   "description": "Node.js REST API client for I'mport",
   "main": "index.js",
   "dependencies": {
-    "lodash": "^4.13.1",
-    "request": "^2.73.0",
-    "request-promise": "^4.0.2"
+    "axios": "^0.15.3",
+    "debug": "^2.6.0",
+    "lodash": "^4.13.1"
   },
   "devDependencies": {
     "eslint": "^3.14.1",
