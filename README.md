@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/posquit0/node-iamporter" title="Iamporter.js">
-    <img alt="Iamporter.js" src="https://avatars3.githubusercontent.com/u/11437969" width="200px" height="200px" />
+    <img alt="Iamporter.js" src="https://avatars3.githubusercontent.com/u/11437969" width="180px" height="180px" />
   </a>
   <br />
   Iamporter
@@ -13,6 +13,9 @@
 <div align="center">
   <a href="https://circleci.com/gh/posquit0/node-iamporter">
     <img alt="CircleCI" src="https://circleci.com/gh/posquit0/node-iamporter.svg?style=shield" />
+  </a>
+  <a href="https://coveralls.io/github/posquit0/node-iamporter">
+    <img src="https://coveralls.io/repos/github/posquit0/node-iamporter/badge.svg" alt='Coverage Status' />
   </a>
   <a href="https://badge.fury.io/js/iamporter">
     <img alt="npm version" src="https://badge.fury.io/js/iamporter.svg" />
