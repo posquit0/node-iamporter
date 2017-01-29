@@ -2,28 +2,16 @@
   "name": "iamporter",
   "version": "0.8.14",
   "description": "Node.js REST API client for I'mport",
-  "main": "index.js",
-  "dependencies": {
-    "axios": "^0.15.3",
-    "debug": "^2.6.0",
-    "lodash": "^4.13.1"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.15",
-    "eslint": "^3.14.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/mocha test",
-    "test:watch": "npm test -- --watch",
-    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test",
-    "lint": "./node_modules/.bin/eslint lib"
-  },
+  "license": "MIT",
+  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
+  "contributors": [],
+  "homepage": "https://github.com/posquit0/node-iamporter#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/posquit0/node-iamporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/posquit0/node-iamporter/issues"
   },
   "keywords": [
     "iamport",
@@ -39,11 +27,30 @@
     "pg",
     "nodejs"
   ],
-  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
-  "contributors": [],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/posquit0/node-iamporter/issues"
+  "engines": {
+    "node": ">=4"
   },
-  "homepage": "https://github.com/posquit0/node-iamporter#readme"
+  "files": {
+    "lib",
+    "*.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test",
+    "lint": "./node_modules/.bin/eslint lib"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "debug": "^2.6.0",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.14.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
 }
