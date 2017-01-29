@@ -36,10 +36,17 @@
 
 <br />
 
-[**Iamporter**](https://github.com/posquit0/node-iamporter)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
+**Iamporter**는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 쉽게 활용하기 위하여 작성된 Node.js 클라이언트 입니다. 아임포트는 국내 PG사와의간편한 연동을 제공하는 서비스입니다.
 
 - 이용 중 발생한 문제에 대하여 책임지지 않습니다.
 - 최초 작성은 자동차 렌트 플랫폼 [CARPLAT](https://www.carplat.co.kr)에서 사용하기 위하여 작성되었습니다.
+
+## <a name="features">Features
+
+- Written in ES6 Syntax
+- [Promise](http://www.html5rocks.com/ko/tutorials/es6/promises/) Support
+- Exception Handling with a custom error class `IamporterError`
+
 
 ## <a name="installation">Installation
 
@@ -49,8 +56,6 @@ $ npm install iamporter
 
 
 ## <a name="usage">Usage
-
-- 모든 메소드는 [Promise](http://www.html5rocks.com/ko/tutorials/es6/promises/)를 반환
 
 ```node
 var iamporter = require('iamporter').createClient({
@@ -198,5 +203,4 @@ If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc
 
 ## <a name="license">License
 
-- Claud D. Park <posquit0.bj@gmail.com>
-- [MIT License](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
+- [MIT](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
