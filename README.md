@@ -80,7 +80,7 @@ const iamporter = new Iamporter({
 - `iamporter`는 API 요청 전에 API 토큰의 유효성을 확인 후 자동 발급/갱신하므로 직접 토큰 API를 호출할 필요가 없습니다.
 
 ```node
-// 인스턴스 생성 시 설정한 API KEY와 SECRET 
+// 인스턴스 생성 시 설정한 API KEY와 SECRET
 iamporter.getToken()
   .then(...)
 
@@ -131,56 +131,66 @@ iamporter.paySubscription({
 
 ### Onetime Payment
 
+- 빌링키를 생성하지 않아도 신용카드 정보만으로 간편 결제를 할 수 있습니다.
+
 ```node
 // Onetime 비인증 결제
 iamporter.payOnetime({
-  'merchant_uid': 'test_merchant',
+  'merchant_uid': 'merchant_1448280088556',
   'amount': 5000,
   'card_number': '1234-1234-1234-1234',
   'expiry': '2021-12',
   'birth': '590912',
   'pwd_2digit': '11'
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
+}).then(result => {
+    console.log(result);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
+});
+
+// 해외카드 비인증 결제
+iamporter.payForeign({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount': 5000,
+  'card_number': '1234-1234-1234-1234',
+  'expiry': '2021-12',
+}).then(result => {
+    console.log(result);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
 });
 ```
 
 ### Cancel the Payment
 
+- 아임포트 고유 아이디 혹은 상점 고유 아이디로 결제 취소가 가능합니다.
+- 부분 결제 취소 또한 지원됩니다.
+
 ```node
-// 결제 취소 (MerchantUid 이용)
-iamporter.cancelByMerchantUid(
-  'test_billing_key'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 아임포트 고유 아이디로 결제 취소
+iamporter.cancelByImpUid('imp_448280090638')
+  .then(...)
 
-// 결제 취소 (ImpUid 이용)
-iamporter.cancelByImpUid(
-  'test_imp_uid'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 상점 고유 아이디로 결제 취소
+iamporter.cancelByMerchantUid('merchant_1448280088556')
+  .then(...)
 
-// 결제 취소
-iamporter.cancel({
-  'imp_uid': 'test_imp_uid',
+// 상점 고유 아이디로 부분 결제 취소
+iamporter.cancelByMerchantUid('merchant_1448280088556', {
   'amount': 2500,
-  'reason': 'bad product',
-  'refund_holder': '박병진',
+  'reason': '예약 변경'
+}).then(...)
+
+// 결제 취소 후 계좌 환불
+iamporter.cancel({
+  'imp_uid': 'imp_448280090638',
+  'reason': '제품 상태 불량',
+  'refund_holder': '홍길동',
   'refund_bank': '03',
   'refund_account': '056-076923-01-017'
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+).then(...)
 ```
 
 ### Find the Payments
@@ -190,33 +200,64 @@ iamporter.cancel({
 ```node
 // 아임포트 고유 아이디로 결제정보 조회
 iamporter.findByImpUid('imp_448280090638')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    if (err instanceof IamporterError)
-      // Handle the exception
-  });
-  
+  .then(...)
+
 // 상점 고유 아이디로 결제정보 조회
 iamporter.findByMerchantUid('merchant_1448280088556')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    if (err instanceof IamporterError)
-      // Handle the exception
-  });
+  .then(...)
 
 // 상점 고유 아이디로 결제정보 목록 조회
 iamporter.findAllByMerchantUid('merchant_1448280088556')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    if (err instanceof IamporterError)
-      // Handle the exception
-  });
+  .then(...)
+
+// 결제 상태로 결제정보 목록 조회(status: ['all', 'ready', 'paid', 'cancelled', 'failed'])
+iamporter.findAllByStatus('paid')
+  .then(...)
+```
+
+### Prepared Payment
+
+- 아임포트에서는 결제 건에 대한 사전 정보 등록 및 검증을 할 수 있습니다.
+
+```node
+// 결제 예정금액 사전 등록
+iamporter.createPreparedPayment({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount', '128900'
+}).then(...)
+
+// 결제 예정금액 조회
+iamporter.getPreparedPayment('merchant_1448280088556')
+  .then(...)
+```
+
+### Certifications
+
+- 아임포트에서는 SMS 본인인증 결과를 조회/삭제할 수 있습니다.
+
+```node
+// 아임포트 고유 아이디로 SMS 본인인증 결과 조회
+iamporter.getCertification('imp_448280090638')
+  .then(...)
+
+// 아임포트 고유 아이디로 SMS 본인인증 결과 삭제
+iamporter.deleteCertification('imp_448280090638')
+  .then(...)
+```
+
+### VBanks
+
+- 아임포트에서는 PG 결제화면 없이 API 만으로 가상계좌 발급이 가능합니다.
+
+```node
+// 가상계좌 발급
+iamporter.createVbank({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount': '128900',
+  'vbank_code': '03',
+  'vbank_due': 1485697047,
+  'vbank_holder': 'PLAT Corp'
+}).then(...)
 ```
 
 
