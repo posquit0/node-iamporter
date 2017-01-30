@@ -60,7 +60,7 @@ $ npm install iamporter
 
 ### Import & Create an Instance
 
-- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공한다.
+- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공.
 
 ```node
 const { Iamporter, IamporterError } = require('iamporter');
@@ -91,7 +91,7 @@ iamporter.getToken('API_KEY', 'SECRET')
 
 ### Subscription
 
-- 정기 구독(Subscription)형 서비스 등에 이용할 수 있는 빌링키를 관리한다.
+- 정기 구독(Subscription)형 서비스 등에 이용할 수 있는 빌링키를 관리합니다.
 
 ```node
 // 빌링키 생성
@@ -197,7 +197,7 @@ iamporter.cancel({
 
 ### Find the Payments
 
-- 아임포트에서는 아임포트 고유 아이디(ImpUid)와 상점 고유 아이디(MerchantUid)로 결제정보 조회가 가능하다.
+- 아임포트에서는 아임포트 고유 아이디(ImpUid)와 상점 고유 아이디(MerchantUid)로 결제정보 조회가 가능합니다.
 
 ```node
 // 아임포트 고유 아이디로 결제정보 조회
