@@ -11,6 +11,12 @@
 </p>
 
 <div align="center">
+  <a href="https://nodei.co/npm/iamporter/">
+    <img src="https://nodei.co/npm/iamporter.png">
+  </a>
+</div>
+
+<div align="center">
   <a href="https://circleci.com/gh/posquit0/node-iamporter">
     <img alt="CircleCI" src="https://circleci.com/gh/posquit0/node-iamporter.svg?style=shield" />
   </a>
@@ -31,12 +37,6 @@
   </a>
   <a href="https://github.com/ellerbrock/open-source-badge/">
     <img alt="Open Source Love" src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" />
-  </a>
-</div>
-
-<div align="center">
-  <a href="https://nodei.co/npm/iamporter/">
-    <img src="https://nodei.co/npm/iamporter.png">
   </a>
 </div>
 
