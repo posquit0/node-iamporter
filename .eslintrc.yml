@@ -1,0 +1,146 @@
+env:
+  node: true
+  es6: true
+
+extends:
+  - "eslint:recommended"
+
+rules:
+  # Possible Errors
+  no-console:
+    - error
+    -
+      allow:
+        - log
+        - warn
+        - error
+  no-debugger: error
+  no-dupe-args: error
+  no-dupe-keys: error
+  no-duplicate-case: error
+  no-empty: error
+  no-ex-assign: error
+  no-extra-boolean-cast: error
+  no-extra-semi: error
+  no-sparse-arrays: error
+  no-template-curly-in-string: warn
+  no-unexpected-multiline: error
+  no-unreachable: error
+  no-unsafe-negation: error
+  use-isnan: error
+  # valid-jsdoc: error
+  valid-typeof: error
+
+  # Best Practices
+  curly:
+    - error
+    - multi-or-nest
+    - consistent
+  eqeqeq:
+    - error
+    - always
+    -
+      null: ignore
+
+  # Strict Mode
+  strict:
+    - error
+    - safe
+
+  # Variables
+  # no-shadow:
+  #   - error
+  #   -
+  #     builtinGlobals: true
+  #     hoist: all
+  #     allow:
+  #       - resolve
+  #       - reject
+  #       - done
+  #       - callback
+  #       - cb
+  #       - next
+  no-undef-init: error
+  no-undef: error
+  no-undefined: error
+  no-unused-vars:
+    - error
+    -
+      vars: all
+      args: after-used
+  no-use-before-define: error
+
+  # Node.js and CommonJS
+  global-require: error
+  no-new-require: error
+  no-path-concat: error
+
+  # Stylistic Issues
+  array-bracket-spacing:
+    - error
+    - never
+  block-spacing: error
+  brace-style:
+    - error
+    - 1tbs
+    -
+      allowSingleLine: true
+  camelcase: error
+  comma-style:
+    - error
+    - last
+  comma-spacing:
+    - error
+    -
+      before: false
+      after: true
+  indent:
+    - error
+    - 2
+    -
+      SwitchCase: 0
+      MemberExpression: 1
+      FunctionDeclaration:
+        parameters: 2
+        body: 1
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  semi-spacing:
+    - error
+    -
+      before: false
+      after: true
+  space-before-blocks:
+    - error
+    - always
+  space-before-function-paren:
+    - error
+    -
+      anonymous: always
+      named: never
+      asyncArrow: always
+  space-in-parens:
+    - error
+    - never
+  space-unary-ops:
+    - error
+    -
+      words: true
+      nonwords: false
+  spaced-comment:
+    - error
+    - always
+    -
+      exceptions:
+        - "-"
+        - "+"
+        - "*"
+
+  # ECMAScript 6

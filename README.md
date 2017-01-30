@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://github.com/posquit0/node-iamporter" title="Iamporter.js">
-    <img alt="Iamporter.js" src="https://avatars3.githubusercontent.com/u/11437969" width="200px" height="200px" />
+    <img alt="Iamporter.js" src="https://avatars3.githubusercontent.com/u/11437969" width="180px" height="180px" />
   </a>
   <br />
   Iamporter
@@ -13,6 +13,9 @@
 <div align="center">
   <a href="https://circleci.com/gh/posquit0/node-iamporter">
     <img alt="CircleCI" src="https://circleci.com/gh/posquit0/node-iamporter.svg?style=shield" />
+  </a>
+  <a href="https://coveralls.io/github/posquit0/node-iamporter">
+    <img src="https://coveralls.io/repos/github/posquit0/node-iamporter/badge.svg" alt='Coverage Status' />
   </a>
   <a href="https://badge.fury.io/js/iamporter">
     <img alt="npm version" src="https://badge.fury.io/js/iamporter.svg" />
@@ -33,10 +36,18 @@
 
 <br />
 
-[**Iamporter**](https://github.com/posquit0/node-iamporter)는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 Node.js에서 쉽게 활용하기 위하여 작성된 클라이언트 모듈입니다.
+**Iamporter**는 [아임포트](http://iamport.kr/)에서 제공하는 REST API를 쉽게 활용하기 위하여 작성된 Node.js 클라이언트 입니다.
 
+- 아임포트는 국내 PG사와의간편한 연동을 제공하는 서비스입니다.
 - 이용 중 발생한 문제에 대하여 책임지지 않습니다.
 - 최초 작성은 자동차 렌트 플랫폼 [CARPLAT](https://www.carplat.co.kr)에서 사용하기 위하여 작성되었습니다.
+
+## <a name="features">Features
+
+- Written in ES6 Syntax
+- [Promise](http://www.html5rocks.com/ko/tutorials/es6/promises/) Support
+- Exception Handling with a custom error class `IamporterError`
+
 
 ## <a name="installation">Installation
 
@@ -47,137 +58,207 @@ $ npm install iamporter
 
 ## <a name="usage">Usage
 
-- 모든 메소드는 [Promise](http://www.html5rocks.com/ko/tutorials/es6/promises/)를 반환
+### Import & Create an Instance
+
+- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공합니다.
 
 ```node
-var iamporter = require('iamporter').createClient({
+const { Iamporter, IamporterError } = require('iamporter');
+
+// For Testing (테스트용 API KEY와 SECRET 기본 설정)
+const iamporter = new Iamporter();
+
+// For Production
+const iamporter = new Iamporter({
   apiKey: 'YOUR_API_KEY',
   secret: 'YOUR_SECRET'
 });
+```
 
-// 비인증 결제를 위한 빌링키 생성
-iamporter.createSubscriber({
+### API Token
+
+- `iamporter`는 API 요청 전에 API 토큰의 유효성을 확인 후 자동 발급/갱신하므로 직접 토큰 API를 호출할 필요가 없습니다.
+
+```node
+// 인스턴스 생성 시 설정한 API KEY와 SECRET
+iamporter.getToken()
+  .then(...)
+
+// 토큰 생성 시 사용될 API KEY와 SECRET 직접 지정
+iamporter.getToken('API_KEY', 'SECRET')
+  .then(...)
+```
+
+### Subscription
+
+- 정기 구독(Subscription)형 서비스 등에 이용할 수 있는 빌링키를 관리합니다.
+
+```node
+// 빌링키 생성
+iamporter.createSubscription({
   'customer_uid': 'test_uid',
   'card_number': '1234-1234-1234-1234',
   'expiry': '2021-11',
   'birth': '620201',
   'pwd_2digit': '99'
-}).then(function (result) {
+}).then(result => {
   console.log(result);
-}).catch(function (error) {
-  console.log(error);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
 });
 
-// 비인증 결제를 위한 빌링키 조회
-iamporter.getSubscriber('test_uid')
-.then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 빌링키 조회
+iamporter.getSubscription('test_uid')
+  .then(...)
 
-// 비인증 결제를 위한 빌링키 삭제
-iamporter.deleteSubscriber('test_uid')
-.then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
+// 빌링키 삭제
+iamporter.deleteSubscription('test_uid')
+  .then(...)
 
+// 비인증 결제 (빌링키 이용)
+iamporter.paySubscription({
+  'customer_uid': 'test_uid',
+  'merchant_uid': 'test_billing_key',
+  'amount': 50000
+}).then(result => {
+    console.log(result);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
+});
+```
+
+### Onetime Payment
+
+- 빌링키를 생성하지 않아도 신용카드 정보만으로 간편 결제를 할 수 있습니다.
+
+```node
 // Onetime 비인증 결제
 iamporter.payOnetime({
-  'merchant_uid': 'test_merchant',
+  'merchant_uid': 'merchant_1448280088556',
   'amount': 5000,
   'card_number': '1234-1234-1234-1234',
   'expiry': '2021-12',
   'birth': '590912',
   'pwd_2digit': '11'
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
+}).then(result => {
+    console.log(result);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
 });
 
-// 비인증 결제 (빌링키 이용)
-iamporter.paySubscriber({
-  'customer_uid': 'test_uid',
-  'merchant_uid': 'test_billing_key',
-  'amount': 50000
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
-
-// 결제 취소 (MerchantUid 이용)
-iamporter.cancelByMerchantUid(
-  'test_billing_key'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
-
-// 결제 취소 (ImpUid 이용)
-iamporter.cancelByImpUid(
-  'test_imp_uid'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
-
-// 결제 취소
-iamporter.cancel({
-  'imp_uid': 'test_imp_uid',
-  'amount': 2500,
-  'reason': 'bad product',
-  'refund_holder': '박병진',
-  'refund_bank': '03',
-  'refund_account': '056-076923-01-017'
-}).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
-
-// 결제정보 조회 (MerchantUid 이용)
-iamporter.findByMerchantUid(
-  'test_billing_key'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
-});
-
-// 결제정보 조회 (ImpUid 이용)
-iamporter.findByImpUid(
-  'test_imp_uid'
-).then(function (result) {
-  console.log(result);
-}).catch(function (error) {
-  console.log(error);
+// 해외카드 비인증 결제
+iamporter.payForeign({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount': 5000,
+  'card_number': '1234-1234-1234-1234',
+  'expiry': '2021-12',
+}).then(result => {
+    console.log(result);
+}).catch(err => {
+  if (err instanceof IamporterError)
+    // Handle the exception
 });
 ```
 
+### Cancel the Payment
 
-## To-do
+- 아임포트 고유 아이디 혹은 상점 고유 아이디로 결제 취소가 가능합니다.
+- 부분 결제 취소 또한 지원됩니다.
 
-- [x] [POST  /users/getToken](https://api.iamport.kr/#!/authenticate/getToken)
-- [x] [GET   /payments/:imp_uid](https://api.iamport.kr/#!/payments/getPaymentByImpUid)
-- [x] [GET   /payments/find/:merchant_uid](https://api.iamport.kr/#!/payments/getPaymentByMerchantUid)
-- [ ] [GET   /payments/status/:payment_status](https://api.iamport.kr/#!/payments/getPaymentsByStatus)
-- [x] [POST  /payments/cancel](https://api.iamport.kr/#!/payments/cancelPayment)
-- [x] [POST  /payments/prepare](https://api.iamport.kr/#!/payments.validation/preparePayment)
-- [x] [GET   /payments/prepare/:merchant_uid](https://api.iamport.kr/#!/payments.validation/getPaymentPrepareByMerchantUid)
-- [x] [POST  /subscribe/payments/onetime](https://api.iamport.kr/#!/subscribe/onetime)
-- [x] [POST  /subscribe/payments/foreign](https://api.iamport.kr/#!/)
-- [x] [POST  /subscribe/payments/again](https://api.iamport.kr/#!/subscribe/again)
-- [ ] [POST   /subscribe/payments/schedule](https://api.iamport.kr/#!/subscribe/schedule)
-- [ ] [POST   /subscribe/payments/unschedule](https://api.iamport.kr/#!/subscribe/unschedule)
-- [x] [DELETE /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_delete)
-- [x] [GET    /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_view)
-- [x] [POST   /subscribe/customers/:customer_uid](https://api.iamport.kr/#!/subscribe.customer/customer_save)
+```node
+// 아임포트 고유 아이디로 결제 취소
+iamporter.cancelByImpUid('imp_448280090638')
+  .then(...)
+
+// 상점 고유 아이디로 결제 취소
+iamporter.cancelByMerchantUid('merchant_1448280088556')
+  .then(...)
+
+// 상점 고유 아이디로 부분 결제 취소
+iamporter.cancelByMerchantUid('merchant_1448280088556', {
+  'amount': 2500,
+  'reason': '예약 변경'
+}).then(...)
+
+// 결제 취소 후 계좌 환불
+iamporter.cancel({
+  'imp_uid': 'imp_448280090638',
+  'reason': '제품 상태 불량',
+  'refund_holder': '홍길동',
+  'refund_bank': '03',
+  'refund_account': '056-076923-01-017'
+).then(...)
+```
+
+### Find the Payments
+
+- 아임포트에서는 아임포트 고유 아이디(ImpUid)와 상점 고유 아이디(MerchantUid)로 결제정보 조회가 가능합니다.
+
+```node
+// 아임포트 고유 아이디로 결제정보 조회
+iamporter.findByImpUid('imp_448280090638')
+  .then(...)
+
+// 상점 고유 아이디로 결제정보 조회
+iamporter.findByMerchantUid('merchant_1448280088556')
+  .then(...)
+
+// 상점 고유 아이디로 결제정보 목록 조회
+iamporter.findAllByMerchantUid('merchant_1448280088556')
+  .then(...)
+
+// 결제 상태로 결제정보 목록 조회(status: ['all', 'ready', 'paid', 'cancelled', 'failed'])
+iamporter.findAllByStatus('paid')
+  .then(...)
+```
+
+### Prepared Payment
+
+- 아임포트에서는 결제 건에 대한 사전 정보 등록 및 검증을 할 수 있습니다.
+
+```node
+// 결제 예정금액 사전 등록
+iamporter.createPreparedPayment({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount', '128900'
+}).then(...)
+
+// 결제 예정금액 조회
+iamporter.getPreparedPayment('merchant_1448280088556')
+  .then(...)
+```
+
+### Certifications
+
+- 아임포트에서는 SMS 본인인증 결과를 조회/삭제할 수 있습니다.
+
+```node
+// 아임포트 고유 아이디로 SMS 본인인증 결과 조회
+iamporter.getCertification('imp_448280090638')
+  .then(...)
+
+// 아임포트 고유 아이디로 SMS 본인인증 결과 삭제
+iamporter.deleteCertification('imp_448280090638')
+  .then(...)
+```
+
+### VBanks
+
+- 아임포트에서는 PG 결제화면 없이 API 만으로 가상계좌 발급이 가능합니다.
+
+```node
+// 가상계좌 발급
+iamporter.createVbank({
+  'merchant_uid': 'merchant_1448280088556',
+  'amount': '128900',
+  'vbank_code': '03',
+  'vbank_due': 1485697047,
+  'vbank_holder': 'PLAT Corp'
+}).then(...)
+```
 
 
 ## <a name="links">Links
@@ -195,5 +276,4 @@ If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc
 
 ## <a name="license">License
 
-- Claud D. Park <posquit0.bj@gmail.com>
-- [MIT License](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
+- [MIT](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)

@@ -1,35 +1,56 @@
 {
   "name": "iamporter",
   "version": "0.8.14",
-  "description": "Node.js client for I'mport REST API",
-  "main": "index.js",
-  "dependencies": {
-    "lodash": "^4.13.1",
-    "request": "^2.73.0",
-    "request-promise": "^4.0.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "mocha"
-  },
+  "description": "Node.js REST API client for I'mport",
+  "license": "MIT",
+  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
+  "contributors": [],
+  "homepage": "https://github.com/posquit0/node-iamporter#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/posquit0/node-iamporter.git"
   },
-  "keywords": [
-    "iamport",
-    "i'mport",
-    "rest",
-    "api",
-    "client",
-    "payment",
-    "nodejs"
-  ],
-  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
-  "contributors": [],
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/posquit0/node-iamporter/issues"
   },
-  "homepage": "https://github.com/posquit0/node-iamporter#readme"
+  "keywords": [
+    "iamport",
+    "i'mport",
+    "importer",
+    "rest",
+    "api",
+    "client",
+    "creditcard",
+    "pay",
+    "payment",
+    "payments",
+    "pg",
+    "nodejs"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "lib",
+    "*.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test",
+    "lint": "./node_modules/.bin/eslint lib"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "debug": "^2.6.0",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.14.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
 }

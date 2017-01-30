@@ -1,4 +1,6 @@
---recursive
---full-trace
+--slow 1000
 --timeout 5000
+--check-leaks
+--reporter spec
+--recursive
 --ui bdd
