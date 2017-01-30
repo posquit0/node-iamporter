@@ -110,23 +110,11 @@ iamporter.createSubscription({
 
 // 빌링키 조회
 iamporter.getSubscription('test_uid')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    if (err instanceof IamporterError)
-      // Handle the exception
-  });
+  .then(...)
 
 // 빌링키 삭제
 iamporter.deleteSubscription('test_uid')
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    if (err instanceof IamporterError)
-      // Handle the exception
-  });
+  .then(...)
 
 // 비인증 결제 (빌링키 이용)
 iamporter.paySubscription({
@@ -135,10 +123,10 @@ iamporter.paySubscription({
   'amount': 50000
 }).then(result => {
     console.log(result);
-  }).catch(err => {
-    if (err instanceof IamporterError)
+}).catch(err => {
+  if (err instanceof IamporterError)
     // Handle the exception
-  });
+});
 ```
 
 ### Onetime Payment
