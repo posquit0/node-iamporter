@@ -60,7 +60,7 @@ $ npm install iamporter
 
 ### Import & Create an Instance
 
-- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공.
+- `iamporter` 패키지는 `Iamporter`와 `IamporterError` 두 클래스를 제공합니다.
 
 ```node
 const { Iamporter, IamporterError } = require('iamporter');
@@ -77,7 +77,7 @@ const iamporter = new Iamporter({
 
 ### API Token
 
-- `iamporter`는 API 요청 전에 API 토큰의 유효성을 확인 후 자동 발급/갱신하므로 직접 토큰 API를 호출할 필요가 없다.
+- `iamporter`는 API 요청 전에 API 토큰의 유효성을 확인 후 자동 발급/갱신하므로 직접 토큰 API를 호출할 필요가 없습니다.
 
 ```node
 // 인스턴스 생성 시 설정한 API KEY와 SECRET 
