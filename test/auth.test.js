@@ -7,7 +7,7 @@ describe('Auth', function () {
   describe('GET /users/getToken', function () {
     let iamporter;
 
-    before(function () {
+    beforeEach(function () {
       iamporter = new Iamporter();
     });
 

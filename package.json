@@ -43,8 +43,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "debug": "^2.6.0",
-    "lodash": "^4.13.1"
+    "debug": "^2.6.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
