@@ -101,5 +101,27 @@ describe('Payment', function () {
         });
     });
   });
-});
 
+  describe('POST /payments/cancel - Iamporter.cancel()', function () {
+    it('should success to cancel a payment');
+
+    it('should fail when given API token is invalid', function () {
+      iamporter.token = 'invalid-token';
+      iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
+
+      return iamporter.cancel()
+        .catch((err) => {
+          expect(err, 'err').to.be.an.instanceof(IamporterError);
+          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
+        });
+    });
+
+    it('should fail to cancel a payment without any uid', function () {
+      return iamporter.cancel()
+        .catch((err) => {
+          expect(err, 'err').to.be.an.instanceof(IamporterError);
+          expect(err.message, 'err.message').to.match(/지정해주셔야합니다./);
+        });
+    });
+  });
+});
