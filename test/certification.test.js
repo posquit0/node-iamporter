@@ -10,7 +10,7 @@ describe('Certification', function () {
     iamporter = new Iamporter();
   });
 
-  describe('GET /certifications/{imp_uid}', function () {
+  describe('GET /certifications/{imp_uid} - Iamporter.getCertification()', function () {
     it('should success to view a SMS certification when uid is valid');
 
     it('should fail when given API token is invalid', function () {
@@ -33,7 +33,7 @@ describe('Certification', function () {
     });
   });
 
-  describe('DELETE /certifications/{imp_uid}', function () {
+  describe('DELETE /certifications/{imp_uid} - Iamporter.deleteCertification()', function () {
     it('should success to delete a SMS certification when uid is valid');
 
     it('should fail when given API token is invalid', function () {

@@ -10,7 +10,7 @@ describe('Subscription', function () {
     iamporter = new Iamporter();
   });
 
-  describe('POST /subscribe/customers/{customer_uid}', function () {
+  describe('POST /subscribe/customers/{customer_uid} - Iamporter.createSubscription()', function () {
     it('should success to create a billing key with a private credit card');
 
     it('should fail when given API token is invalid', function () {
@@ -32,7 +32,7 @@ describe('Subscription', function () {
     });
   });
 
-  describe('GET /subscribe/customers/{customer_uid}', function () {
+  describe('GET /subscribe/customers/{customer_uid} - Iamporter.getSubscription()', function () {
     it('should success to view a subscription information when billing key is valid');
 
     it('should fail when given API token is invalid', function () {
@@ -55,7 +55,7 @@ describe('Subscription', function () {
     });
   });
 
-  describe('DELETE /subscribe/customers/{customer_uid}', function () {
+  describe('DELETE /subscribe/customers/{customer_uid} - Iamporter.deleteSubscription()', function () {
     it('should success to delete a subscription information when billing key is valid');
 
     it('should fail when given API token is invalid', function () {

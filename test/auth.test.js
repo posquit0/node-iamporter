@@ -4,7 +4,7 @@ const { expect } = require('chai');
 const { Iamporter, IamporterError } = require('../');
 
 describe('Auth', function () {
-  describe('GET /users/getToken', function () {
+  describe('GET /users/getToken - Iamporter.getToken()', function () {
     let iamporter;
 
     beforeEach(function () {

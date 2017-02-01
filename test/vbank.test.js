@@ -10,7 +10,7 @@ describe('Vbank', function () {
     iamporter = new Iamporter();
   });
 
-  describe('POST /vbanks', function () {
+  describe('POST /vbanks - Iamporter.createVbank()', function () {
     it('should success to issue a virtual account when parameters are valid');
 
     it('should fail when given API token is invalid', function () {
