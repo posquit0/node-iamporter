@@ -18,7 +18,7 @@ describe('Subscription', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       const data = {
-        'customer_uid': 'customer_1234',
+        'customer_uid': 'customer-1234',
         'card_number': '1234-1234-1234-1234',
         'expiry': '2020-02',
         'birth': '920220'
