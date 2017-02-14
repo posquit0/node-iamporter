@@ -24,14 +24,8 @@ describe('Subscription', function () {
         'birth': '920220'
       };
 
-      return iamporter.createSubscription(data)
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.createSubscription(data)).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
   });
 
@@ -42,14 +36,8 @@ describe('Subscription', function () {
       iamporter.token = 'invalid-token';
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
-      return iamporter.getSubscription()
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.getSubscription()).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
     it('should fail to view a subscription information with non-existent billing key', function () {
@@ -71,14 +59,8 @@ describe('Subscription', function () {
       iamporter.token = 'invalid-token';
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
-      return iamporter.deleteSubscription()
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.deleteSubscription()).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
     it('should fail to delete a non-existent billing key', function () {

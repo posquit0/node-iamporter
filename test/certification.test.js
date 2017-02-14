@@ -17,14 +17,8 @@ describe('Certification', function () {
       iamporter.token = 'invalid-token';
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
-      return iamporter.getCertification()
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.getCertification()).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
     it('should fail to view a SMS certification with non-existent uid', function () {
@@ -46,14 +40,8 @@ describe('Certification', function () {
       iamporter.token = 'invalid-token';
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
-      return iamporter.deleteCertification()
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.deleteCertification()).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
     it('should fail to delete a non-existent SMS certification', function () {

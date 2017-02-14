@@ -25,14 +25,8 @@ describe('Vbank', function () {
         'vbank_holder': 'PLAT Corp'
       };
 
-      return iamporter.createVbank(data)
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
-        });
+      return expect(iamporter.createVbank(data)).to.eventually
+        .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
     it('should fail to issue a virtual account without any contract with banks', function () {
