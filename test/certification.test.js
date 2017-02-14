@@ -18,6 +18,9 @@ describe('Certification', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.getCertification()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -29,6 +32,9 @@ describe('Certification', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('인증결과가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -41,6 +47,9 @@ describe('Certification', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.deleteCertification()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -52,6 +61,9 @@ describe('Certification', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('인증결과가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });

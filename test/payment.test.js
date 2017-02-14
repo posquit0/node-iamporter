@@ -18,6 +18,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.findByImpUid('iamporter-test-imp-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -29,6 +32,9 @@ describe('Payment', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -41,6 +47,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.findByMerchantUid('iamporter-test-merchant-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -52,6 +61,9 @@ describe('Payment', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -64,6 +76,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.findAllByMerchantUid('iamporter-test-merchant-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -75,6 +90,9 @@ describe('Payment', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -87,6 +105,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.findAllByStatus()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -95,6 +116,9 @@ describe('Payment', function () {
 
     it('should fail to find a list of payment informations with invalid status', function () {
       return iamporter.findAllByStatus('iamporter-test-status')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('지원되지 않는 상태값입니다.');
@@ -115,6 +139,9 @@ describe('Payment', function () {
       };
 
       return iamporter.createPreparedPayment(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -130,6 +157,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.getPreparedPayment()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -141,6 +171,9 @@ describe('Payment', function () {
         .then((res) => {
           expect(res.message, 'res.message').to.equal('사전등록된 결제정보가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
+        })
+        .catch(() => {
+          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -161,6 +194,9 @@ describe('Payment', function () {
       };
 
       return iamporter.payOnetime(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -177,6 +213,9 @@ describe('Payment', function () {
       };
 
       return iamporter.payOnetime(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/유효하지않은 카드번호를 입력하셨습니다./);
@@ -198,6 +237,9 @@ describe('Payment', function () {
       };
 
       return iamporter.paySubscription(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -212,6 +254,9 @@ describe('Payment', function () {
       };
 
       return iamporter.paySubscription(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/등록되지 않은 구매자입니다./);
@@ -234,6 +279,9 @@ describe('Payment', function () {
       };
 
       return iamporter.payForeign(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -249,6 +297,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.cancelByImpUid('iamporter-test-imp-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -257,6 +308,9 @@ describe('Payment', function () {
 
     it('should fail to cancel a payment with non-existent uid', function () {
       return iamporter.cancelByImpUid('iamporter-test-imp-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/취소할 결제건이 존재하지 않습니다./);
@@ -272,6 +326,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.cancelByMerchantUid('iamporter-test-merchant-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -280,6 +337,9 @@ describe('Payment', function () {
 
     it('should fail to cancel a payment with non-existent uid', function () {
       return iamporter.cancelByMerchantUid('iamporter-test-merchant-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/취소할 결제건이 존재하지 않습니다./);
@@ -295,6 +355,9 @@ describe('Payment', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.cancel()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -303,6 +366,9 @@ describe('Payment', function () {
 
     it('should fail to cancel a payment without any uid', function () {
       return iamporter.cancel()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/지정해주셔야합니다./);

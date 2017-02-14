@@ -25,6 +25,9 @@ describe('Subscription', function () {
       };
 
       return iamporter.createSubscription(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -40,6 +43,9 @@ describe('Subscription', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.getSubscription()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -48,6 +54,9 @@ describe('Subscription', function () {
 
     it('should fail to view a subscription information with non-existent billing key', function () {
       return iamporter.getSubscription('iamporter-test-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/등록된 정보를 찾을 수 없습니다./);
@@ -63,6 +72,9 @@ describe('Subscription', function () {
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       return iamporter.deleteSubscription()
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -71,6 +83,9 @@ describe('Subscription', function () {
 
     it('should fail to delete a non-existent billing key', function () {
       return iamporter.deleteSubscription('iamporter-test-uid')
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/등록된 정보를 찾을 수 없습니다./);

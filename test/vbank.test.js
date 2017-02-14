@@ -26,6 +26,9 @@ describe('Vbank', function () {
       };
 
       return iamporter.createVbank(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
@@ -42,6 +45,9 @@ describe('Vbank', function () {
       };
 
       return iamporter.createVbank(data)
+        .then(() => {
+          throw new Error('Exception이 발생해야 하는 테스트입니다.');
+        })
         .catch((err) => {
           expect(err, 'err').to.be.an.instanceof(IamporterError);
           expect(err.message, 'err.message').to.match(/계약이 필요합니다./);
