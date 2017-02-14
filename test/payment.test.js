@@ -102,6 +102,49 @@ describe('Payment', function () {
     });
   });
 
+  describe('POST /payments/prepare - Iamporter.createPreparedPayment()', function () {
+    it('should success to create a prepared payment');
+
+    it('should fail when given API token is invalid', function () {
+      iamporter.token = 'invalid-token';
+      iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
+
+      const data = {
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 500
+      };
+
+      return iamporter.createPreparedPayment(data)
+        .catch((err) => {
+          expect(err, 'err').to.be.an.instanceof(IamporterError);
+          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
+        });
+    });
+  });
+
+  describe('GET /payments/prepare - Iamporter.getPreparedPayment()', function () {
+    it('should success to view a prepared payment information when uid is valid');
+
+    it('should fail when given API token is invalid', function () {
+      iamporter.token = 'invalid-token';
+      iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
+
+      return iamporter.getPreparedPayment()
+        .catch((err) => {
+          expect(err, 'err').to.be.an.instanceof(IamporterError);
+          expect(err.message, 'err.message').to.equal('아임포트 API 인증에 실패하였습니다.');
+        });
+    });
+
+    it('should fail to view a prepared payment information with invalid uid', function () {
+      return iamporter.getPreparedPayment('iamporter-test-merchant-uid')
+        .then((res) => {
+          expect(res.message, 'res.message').to.equal('사전등록된 결제정보가 존재하지 않습니다.');
+          expect(res.data, 'res.data').to.be.null;
+        });
+    });
+  });
+
   describe('POST /subscribe/payments/onetime - Iamporter.payOnetime()', function () {
     it('should success to pay onetime with a credit-card');
 
