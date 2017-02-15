@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const { expect } = require('chai');
 const { Iamporter, IamporterError } = require('../');
 
@@ -29,6 +30,22 @@ describe('Vbank', function () {
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 5000,
+        'vbank_code': '03',
+        'vbank_due': Math.floor(Date.now() / 1000) + 5000,
+        'vbank_holder': 'PLAT Corp'
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.createVbank(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
+    });
+
     it('should fail to issue a virtual account without any contract with banks', function () {
       const data = {
         'merchant_uid': 'iamporter-test-merchant-uid',
@@ -38,14 +55,8 @@ describe('Vbank', function () {
         'vbank_holder': 'PLAT Corp'
       };
 
-      return iamporter.createVbank(data)
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/계약이 필요합니다./);
-        });
+      return expect(iamporter.createVbank(data)).to.eventually
+        .rejectedWith(IamporterError, /계약이 필요합니다./);
     });
   });
 });

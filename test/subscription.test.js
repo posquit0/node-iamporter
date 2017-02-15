@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const { expect } = require('chai');
 const { Iamporter, IamporterError } = require('../');
 
@@ -26,6 +27,21 @@ describe('Subscription', function () {
 
       return expect(iamporter.createSubscription(data)).to.eventually
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
+    });
+
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'customer_uid': 'customer-1234',
+        'card_number': '1234-1234-1234-1234',
+        'expiry': '2020-02',
+        'birth': '920220'
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.createSubscription(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
     });
   });
 

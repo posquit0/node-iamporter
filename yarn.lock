@@ -237,7 +237,14 @@ cliui@^2.1.0:
     right-align "^0.1.1"
     wordwrap "0.0.2"
 
-co@^4.6.0:
+co-mocha@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/co-mocha/-/co-mocha-1.2.0.tgz#d9be35a2a2d16f4b1b0e83f6973401ca4b6660af"
+  dependencies:
+    co "^4.0.0"
+    is-generator "^1.0.1"
+
+co@^4.0.0, co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
 
@@ -757,6 +764,10 @@ is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz#a3b30a5c4f199183167aaab93beefae3ddfb654f"
 
+is-generator@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/is-generator/-/is-generator-1.0.3.tgz#c14c21057ed36e328db80347966c693f886389f3"
+
 is-my-json-valid@^2.10.0, is-my-json-valid@^2.12.4:
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.15.0.tgz#936edda3ca3c211fd98f3b2d3e08da43f7b2915b"
@@ -950,7 +961,7 @@ lodash.keys@^3.0.0:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
-lodash@^4.0.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 

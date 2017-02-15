@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const { expect } = require('chai');
 const { Iamporter, IamporterError } = require('../');
 
@@ -117,6 +118,19 @@ describe('Payment', function () {
       return expect(iamporter.createPreparedPayment(data)).to.eventually
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
+
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 500
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.createPreparedPayment(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
+    });
   });
 
   describe('GET /payments/prepare - Iamporter.getPreparedPayment()', function () {
@@ -161,6 +175,22 @@ describe('Payment', function () {
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 5000,
+        'card_number': '1234-1234-1234-1234',
+        'expiry': '2020-02',
+        'birth': '920220'
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.payOnetime(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
+    });
+
     it('should fail to pay with invalid credit-card information', function () {
       const data = {
         'merchant_uid': 'iamporter-test-merchant-uid',
@@ -198,6 +228,20 @@ describe('Payment', function () {
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
     });
 
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'customer_uid': 'iamporter-test-customer-uid',
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 5000
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.paySubscription(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
+    });
+
     it('should fail to pay with invalid billing key', function () {
       const data = {
         'customer_uid': 'iamporter-test-customer-uid',
@@ -232,6 +276,21 @@ describe('Payment', function () {
 
       return expect(iamporter.payForeign(data)).to.eventually
         .rejectedWith(IamporterError, '아임포트 API 인증에 실패하였습니다.');
+    });
+
+    it('should fail when some parameters are omitted', function* () {
+      const data = {
+        'merchant_uid': 'iamporter-test-merchant-uid',
+        'amount': 5000,
+        'card_number': '1234-1234-1234-1234',
+        'expiry': '2020-02'
+      };
+
+      for (let key of Object.keys(data)) {
+        const omitted = _.omit(data, key);
+        yield expect(iamporter.payForeign(omitted)).to.eventually
+          .rejectedWith(IamporterError, /파라미터 누락:/);
+      }
     });
   });
 

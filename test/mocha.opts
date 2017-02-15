@@ -1,6 +1,7 @@
 --check-leaks
 --recursive
 --reporter spec
+--require co-mocha
 --require ./test/setup.js
 --slow 1000
 --timeout 5000
