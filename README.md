@@ -73,7 +73,7 @@ $ npm install iamporter
 }
 ```
 
-### Reject
+### Rejected
 
 - API 요청을 성공적으로 수행하지 못한 경우 항상 `IamporterError` 에러를 반환합니다.
 
