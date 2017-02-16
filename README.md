@@ -56,6 +56,38 @@ $ npm install iamporter
 ```
 
 
+## <a name="specification">Specification
+
+- 모든 API 요청은 Promise를 반환합니다.
+
+### Fulfilled 
+
+- API 요청이 성공적으로 수행된 경우 다음과 같은 형식의 데이터를 반환합니다.
+
+```js
+{
+  "status": 200, // HTTP STATUS CODE
+  "message": "", // 아임포트 API 응답 메시지 혹은 Iamporter 정의 메시지
+  "data": {}, // 아임포트 API 응답 데이터
+  "raw": {} // 아임포트 API RAW DATA
+}
+```
+
+### Rejected
+
+- API 요청을 성공적으로 수행하지 못한 경우 항상 `IamporterError` 에러를 반환합니다.
+
+```js
+iamporter.paySubscription(...)
+  .catch((err) => {
+    console.log(err.status); // HTTP STATUS CODE
+    console.log(err.message); // 아임포트 API 응답 메시지 혹은 Iamporter 정의 메시지
+    console.log(err.data); // 아임포트 API 응답 데이터
+    console.log(err.raw); // 아임포트 API RAW DATA
+  });
+```
+
+
 ## <a name="usage">Usage
 
 ### Import & Create an Instance
