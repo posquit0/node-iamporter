@@ -1,6 +1,6 @@
 {
   "name": "iamporter",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "description": "Node.js REST API client for I'mport",
   "license": "MIT",
   "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
