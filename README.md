@@ -64,7 +64,7 @@ $ npm install iamporter
 
 - API 요청이 성공적으로 수행된 경우 다음과 같은 형식의 데이터를 반환합니다.
 
-```json
+```js
 {
   "status": 200, // HTTP STATUS CODE
   "message": "", // 아임포트 API 응답 메시지 혹은 Iamporter 정의 메시지
@@ -86,6 +86,7 @@ iamporter.paySubscription(...)
     console.log(err.raw); // 아임포트 API RAW DATA
   });
 ```
+
 
 ## <a name="usage">Usage
 
