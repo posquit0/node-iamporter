@@ -23,13 +23,10 @@ describe('Payment', function () {
     });
 
     it('should fail to find a payment information with non-existent uid', function () {
-      return iamporter.findByImpUid('iamporter-test-imp-uid')
+      return expect(iamporter.findByImpUid('iamporter-test-imp-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -46,13 +43,10 @@ describe('Payment', function () {
     });
 
     it('should fail to find a payment information with non-existent uid', function () {
-      return iamporter.findByMerchantUid('iamporter-test-merchant-uid')
+      return expect(iamporter.findByMerchantUid('iamporter-test-merchant-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -69,13 +63,10 @@ describe('Payment', function () {
     });
 
     it('should fail to find a list of payment informations with non-existent uid', function () {
-      return iamporter.findAllByMerchantUid('iamporter-test-merchant-uid')
+      return expect(iamporter.findAllByMerchantUid('iamporter-test-merchant-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('존재하지 않는 결제정보입니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -92,14 +83,8 @@ describe('Payment', function () {
     });
 
     it('should fail to find a list of payment informations with invalid status', function () {
-      return iamporter.findAllByStatus('iamporter-test-status')
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.equal('지원되지 않는 상태값입니다.');
-        });
+      return expect(iamporter.findAllByStatus('iamporter-test-status')).to.eventually
+        .rejectedWith(IamporterError, '지원되지 않는 상태값입니다.');
     });
   });
 
@@ -145,13 +130,10 @@ describe('Payment', function () {
     });
 
     it('should fail to view a prepared payment information with invalid uid', function () {
-      return iamporter.getPreparedPayment('iamporter-test-merchant-uid')
+      return expect(iamporter.getPreparedPayment('iamporter-test-merchant-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('사전등록된 결제정보가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -200,14 +182,8 @@ describe('Payment', function () {
         'birth': '920220'
       };
 
-      return iamporter.payOnetime(data)
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/유효하지않은 카드번호를 입력하셨습니다./);
-        });
+      return expect(iamporter.payOnetime(data)).to.eventually
+        .rejectedWith(IamporterError, /유효하지않은 카드번호/);
     });
   });
 
@@ -249,14 +225,8 @@ describe('Payment', function () {
         'amount': 5000
       };
 
-      return iamporter.paySubscription(data)
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/등록되지 않은 구매자입니다./);
-        });
+      return expect(iamporter.paySubscription(data)).to.eventually
+        .rejectedWith(IamporterError, /등록되지 않은 구매자입니다./);
     });
   });
 
@@ -306,14 +276,8 @@ describe('Payment', function () {
     });
 
     it('should fail to cancel a payment with non-existent uid', function () {
-      return iamporter.cancelByImpUid('iamporter-test-imp-uid')
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/취소할 결제건이 존재하지 않습니다./);
-        });
+      return expect(iamporter.cancelByImpUid('iamporter-test-imp-uid')).to.eventually
+        .rejectedWith(IamporterError, /취소할 결제건이 존재하지 않습니다./);
     });
   });
 
@@ -329,14 +293,8 @@ describe('Payment', function () {
     });
 
     it('should fail to cancel a payment with non-existent uid', function () {
-      return iamporter.cancelByMerchantUid('iamporter-test-merchant-uid')
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/취소할 결제건이 존재하지 않습니다./);
-        });
+      return expect(iamporter.cancelByMerchantUid('iamporter-test-merchant-uid')).to.eventually
+        .rejectedWith(IamporterError, /취소할 결제건이 존재하지 않습니다./);
     });
   });
 
@@ -352,14 +310,8 @@ describe('Payment', function () {
     });
 
     it('should fail to cancel a payment without any uid', function () {
-      return iamporter.cancel()
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/지정해주셔야합니다./);
-        });
+      return expect(iamporter.cancel()).to.eventually
+        .rejectedWith(IamporterError, /지정해주셔야합니다./);
     });
   });
 });

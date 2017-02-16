@@ -12,14 +12,11 @@ describe('Auth', function () {
     });
 
     it('should success to get a new API token with a default API Key and Secret', function () {
-      return iamporter.getToken()
+      return expect(iamporter.getToken()).to.be.fulfilled
         .then((res) => {
           expect(res.data, 'data').to.have.all.keys([
             'access_token', 'now', 'expired_at'
           ]);
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
 

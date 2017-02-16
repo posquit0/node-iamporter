@@ -22,13 +22,10 @@ describe('Certification', function () {
     });
 
     it('should fail to view a SMS certification with non-existent uid', function () {
-      return iamporter.getCertification('iamporter-test-imp-uid')
+      return expect(iamporter.getCertification('iamporter-test-imp-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('인증결과가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });
@@ -45,13 +42,10 @@ describe('Certification', function () {
     });
 
     it('should fail to delete a non-existent SMS certification', function () {
-      return iamporter.deleteCertification('iamporter-test-imp-uid')
+      return expect(iamporter.deleteCertification('iamporter-test-imp-uid')).to.be.fulfilled
         .then((res) => {
           expect(res.message, 'res.message').to.equal('인증결과가 존재하지 않습니다.');
           expect(res.data, 'res.data').to.be.null;
-        })
-        .catch(() => {
-          throw new Error('Exception이 발생하면 안되는 테스트입니다.');
         });
     });
   });

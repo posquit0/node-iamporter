@@ -14,12 +14,24 @@ describe('Subscription', function () {
   describe('POST /subscribe/customers/{customer_uid} - Iamporter.createSubscription()', function () {
     it('should success to create a billing key with a private credit card');
 
+    it('should fail when given credit card is invalid', function () {
+      const data = {
+        'customer_uid': 'iamporter-test-customer-uid',
+        'card_number': '1234-1234-1234-1234',
+        'expiry': '2020-02',
+        'birth': '880220'
+      };
+
+      return expect(iamporter.createSubscription(data)).to.eventually
+        .rejectedWith(IamporterError, /유효하지않은 카드번호/);
+    });
+
     it('should fail when given API token is invalid', function () {
       iamporter.token = 'invalid-token';
       iamporter.expireAt = Math.floor(Date.now() / 1000) + 5000;
 
       const data = {
-        'customer_uid': 'customer-1234',
+        'customer_uid': 'iamporter-test-customer-uid',
         'card_number': '1234-1234-1234-1234',
         'expiry': '2020-02',
         'birth': '920220'
@@ -31,7 +43,7 @@ describe('Subscription', function () {
 
     it('should fail when some parameters are omitted', function* () {
       const data = {
-        'customer_uid': 'customer-1234',
+        'customer_uid': 'iamporter-test-customer-uid',
         'card_number': '1234-1234-1234-1234',
         'expiry': '2020-02',
         'birth': '920220'
@@ -57,14 +69,8 @@ describe('Subscription', function () {
     });
 
     it('should fail to view a subscription information with non-existent billing key', function () {
-      return iamporter.getSubscription('iamporter-test-uid')
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/등록된 정보를 찾을 수 없습니다./);
-        });
+      return expect(iamporter.getSubscription('iamporter-test-uid')).to.eventually
+        .rejectedWith(IamporterError, /등록된 정보를 찾을 수 없습니다./);
     });
   });
 
@@ -80,14 +86,8 @@ describe('Subscription', function () {
     });
 
     it('should fail to delete a non-existent billing key', function () {
-      return iamporter.deleteSubscription('iamporter-test-uid')
-        .then(() => {
-          throw new Error('Exception이 발생해야 하는 테스트입니다.');
-        })
-        .catch((err) => {
-          expect(err, 'err').to.be.an.instanceof(IamporterError);
-          expect(err.message, 'err.message').to.match(/등록된 정보를 찾을 수 없습니다./);
-        });
+      return expect(iamporter.deleteSubscription('iamporter-test-uid')).to.eventually
+        .rejectedWith(IamporterError, /등록된 정보를 찾을 수 없습니다./);
     });
   });
 });
