@@ -36,10 +36,10 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test",
+    "test": "mocha test",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test",
-    "lint": "./node_modules/.bin/eslint ./"
+    "test:coverage": "istanbul cover _mocha --report lcovonly -- test",
+    "lint": "eslint ./"
   },
   "dependencies": {
     "axios": "^0.15.3",
