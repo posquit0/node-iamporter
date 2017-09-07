@@ -1,6 +1,6 @@
 {
   "name": "iamporter",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Node.js REST API client for I'mport",
   "license": "MIT",
   "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
@@ -43,14 +43,14 @@
   },
   "dependencies": {
     "axios": "^0.16.0",
-    "debug": "^2.6.0"
+    "debug": "^3.0.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "co-mocha": "^1.2.0",
-    "coveralls": "^2.13.0",
-    "eslint": "^3.19.0",
+    "coveralls": "^2.13.1",
+    "eslint": "^4.6.1",
     "istanbul": "^0.4.5",
     "lodash": "^4.17.4",
     "mocha": "^3.2.0"

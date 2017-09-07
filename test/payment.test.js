@@ -220,8 +220,8 @@ describe('Payment', function () {
 
     it('should fail to pay with invalid billing key', function () {
       const data = {
-        'customer_uid': 'iamporter-test-customer-uid',
-        'merchant_uid': 'iamporter-test-merchant-uid',
+        'customer_uid': 'iamporter-test-customer-uid4',
+        'merchant_uid': 'iamporter-test-merchant-uid3',
         'amount': 5000
       };
 
