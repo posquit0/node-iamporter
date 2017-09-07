@@ -49,6 +49,9 @@ node_modules
 # Yarn Integrity file
 .yarn-integrity
 
+# Yarn Lock file
+yarn.lock
+
 ### OSX ###
 *.DS_Store
 .AppleDouble
