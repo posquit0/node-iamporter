@@ -42,23 +42,21 @@
 - 이용 중 발생한 문제에 대하여 책임지지 않습니다.
 - 최초 작성은 자동차 렌트 플랫폼 [CARPLAT](https://www.carplat.co.kr)에서 사용하기 위하여 작성되었습니다.
 
-## <a name="features">Features
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/posquit0/node-iamporter.svg)](https://greenkeeper.io/)
+## Features
 
 - Written in ES6 Syntax
 - [Promise](http://www.html5rocks.com/ko/tutorials/es6/promises/) Support
 - Exception Handling with a custom error class `IamporterError`
 
 
-## <a name="installation">Installation
+## Installation
 
 ```bash
 $ npm install iamporter
 ```
 
 
-## <a name="specification">Specification
+## Specification
 
 - 모든 API 요청은 Promise를 반환합니다.
 
@@ -90,7 +88,7 @@ iamporter.paySubscription(...)
 ```
 
 
-## <a name="usage">Usage
+## Usage
 
 ### Import & Create an Instance
 
@@ -295,7 +293,7 @@ iamporter.createVbank({
 ```
 
 
-## <a name="links">Links
+## Links
 
 - [**아임포트**](http://www.iamport.kr/)
 - [**아임포트 API**](https://api.iamport.kr/)
@@ -303,11 +301,11 @@ iamporter.createVbank({
 - [**아임포트 매뉴얼**](http://www.iamport.kr/manual/)
 
 
-## <a name="contact">Contact
+## Contact
 
 If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc://irc.freenode.net/posquit0) and ask away. Click [here](https://kiwiirc.com/client/irc.freenode.net/posquit0) to connect.
 
 
-## <a name="license">License
+## License
 
 - [MIT](https://github.com/posquit0/node-iamporter/blob/master/LICENSE)
