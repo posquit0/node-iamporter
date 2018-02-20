@@ -42,7 +42,7 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.18.0",
     "debug": "^3.0.1"
   },
   "devDependencies": {
