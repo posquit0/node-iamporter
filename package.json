@@ -52,7 +52,7 @@
     "coveralls": "^3.0.0",
     "eslint": "^5.0.0",
     "istanbul": "^0.4.5",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.15",
     "mocha": "^5.0.0"
   }
 }
